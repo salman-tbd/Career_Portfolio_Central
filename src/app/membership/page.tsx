@@ -331,8 +331,8 @@ export default function MembershipPage() {
               >
                 {/* Popular Badge */}
                 {plan.popular && (
-                  <div className="absolute -top-3 left-1/2 transform -translate-x-1/2 z-20">
-                    <div className="bg-gradient-to-r from-brand-teal to-brand-navy text-white px-4 py-2 rounded-full text-xs font-bold shadow-lg uppercase tracking-wide">
+                  <div className="absolute -top-4 left-1/2 transform -translate-x-1/2 z-20">
+                    <div className="bg-gradient-to-r from-brand-navy to-brand-teal text-white px-6 py-2 rounded-full text-sm font-semibold shadow-lg">
                       {plan.highlight}
                     </div>
                   </div>
@@ -340,8 +340,8 @@ export default function MembershipPage() {
 
                 <div className={`card h-full flex flex-col relative overflow-hidden ${
                   plan.popular
-                    ? 'border-2 border-brand-teal shadow-2xl bg-gradient-to-b from-white to-blue-50 pt-4'
-                    : 'border border-brand-gray-200 shadow-lg'
+                    ? 'border-2 border-brand-teal shadow-2xl bg-gradient-to-b from-white to-blue-50'
+                    : 'border-2 border-brand-gray-300 shadow-lg hover:border-brand-navy hover:shadow-xl transition-all duration-300'
                 }`}>
                   {/* Background Pattern for Popular Plan */}
                   {plan.popular && (
@@ -435,23 +435,11 @@ export default function MembershipPage() {
               </div>
             ))}
           </div>
-
-          {/* Trust Badges */}
-          <div className="mt-16 text-center">
-            <p className="text-brand-gray-600 mb-6">Trusted by professionals at</p>
-            <div className="flex items-center justify-center space-x-8 opacity-60">
-              {['Google', 'Microsoft', 'Apple', 'Amazon', 'Meta'].map((company) => (
-                <div key={company} className="text-xl font-semibold text-brand-gray-500">
-                  {company}
-                </div>
-              ))}
-            </div>
-          </div>
         </div>
       </section>
 
       {/* Feature Comparison */}
-      <section className="py-20 bg-white" data-animate id="comparison">
+      <section className="py-20 bg-white pt-24" data-animate id="comparison">
         <div className="container">
           <div className={`text-center mb-16 transition-all duration-700 ${
             animateOnScroll['comparison'] ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
@@ -464,7 +452,7 @@ export default function MembershipPage() {
             </p>
           </div>
 
-          <div className={`overflow-hidden rounded-2xl shadow-2xl transition-all duration-700 ${
+          <div className={`overflow-hidden rounded-2xl shadow-2xl transition-all duration-700 mt-8 ${
             animateOnScroll['comparison'] ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
           } bg-white`} style={{ transitionDelay: '300ms' }}>
             <div className="overflow-x-auto scrollbar-thin scrollbar-thumb-brand-gray-300 scrollbar-track-gray-100" style={{ WebkitOverflowScrolling: 'touch' }}>
@@ -475,8 +463,8 @@ export default function MembershipPage() {
                     <th className="text-center p-3 sm:p-4 md:p-6 font-bold text-sm sm:text-base md:text-lg min-w-[100px]">Free</th>
                     <th className="text-center p-3 sm:p-4 md:p-6 font-bold text-sm sm:text-base md:text-lg relative min-w-[140px]">
                       Professional
-                      <div className="absolute -top-1 sm:-top-2 left-1/2 transform -translate-x-1/2 bg-brand-gold text-brand-navy px-1 sm:px-2 py-0.5 sm:py-1 rounded text-xs font-bold">
-                        POPULAR
+                      <div className="absolute -top-1 left-1/2 transform -translate-x-1/2 bg-gradient-to-r from-brand-navy to-brand-teal text-white px-4 py-1.5 rounded-full text-xs font-semibold shadow-lg whitespace-nowrap">
+                        Most Popular
                       </div>
                     </th>
                     <th className="text-center p-3 sm:p-4 md:p-6 font-bold text-sm sm:text-base md:text-lg min-w-[120px]">Executive</th>

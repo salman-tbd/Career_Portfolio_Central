@@ -150,9 +150,8 @@ export default function PrivacyPage() {
                 If you have any questions about this Privacy Policy or our privacy practices, please contact us:
               </p>
               <div className="space-y-2 text-brand-gray-700">
-                <p><strong>Email:</strong> privacy@careerportfoliocentral.net</p>
+                <p><strong>Email:</strong> info@careerportfoliocentral.net</p>
                 <p><strong>Address:</strong> Career Portfolio Central, Privacy Department</p>
-                <p><strong>Phone:</strong> 1-800-CAREER-1</p>
               </div>
               <div className="mt-6">
                 <Link href="/contact" className="text-brand-navy hover:underline">

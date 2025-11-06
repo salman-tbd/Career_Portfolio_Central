@@ -10,10 +10,23 @@ const Footer: React.FC = () => {
     {
       title: 'Services',
       links: [
+        { name: 'All Services', href: '/services' },
         { name: 'Resume Builder', href: '/resume-builder' },
         { name: 'Portfolio Showcase', href: '/portfolio-showcase' },
         { name: 'Job Listings', href: '/job-listings' },
         { name: 'Career Counselling', href: '/career-counselling' },
+        { name: 'Membership Plans', href: '/membership' },
+      ],
+    },
+    {
+      title: 'Resources',
+      links: [
+        { name: 'Career Resources', href: '/resources' },
+        { name: 'Success Stories', href: '/success-stories' },
+        { name: 'Industries', href: '/industries' },
+        { name: 'Webinars & Events', href: '/webinars' },
+        { name: 'For Students', href: '/for-students' },
+        { name: 'FAQ', href: '/faq' },
       ],
     },
     {
@@ -22,16 +35,16 @@ const Footer: React.FC = () => {
         { name: 'About Us', href: '/about' },
         { name: 'Blog', href: '/blog' },
         { name: 'Contact', href: '/contact' },
-        { name: 'Membership Plans', href: '/membership' },
+        { name: 'Pricing Plans', href: '/pricing' },
       ],
     },
     {
       title: 'Support',
       links: [
         { name: 'Help Center', href: '/help' },
+        { name: 'FAQ', href: '/faq' },
         { name: 'Privacy Policy', href: '/privacy' },
         { name: 'Terms of Service', href: '/terms' },
-        { name: 'Contact Support', href: '/contact' },
       ],
     },
   ];
@@ -39,7 +52,7 @@ const Footer: React.FC = () => {
   return (
     <footer className="bg-brand-gray-900 text-white">
       <div className="container mx-auto px-4 py-12">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8">
           {/* Brand Section */}
           <div className="col-span-1 lg:col-span-1">
             <Link href="/" className="inline-block mb-6 group">
@@ -118,7 +131,7 @@ const Footer: React.FC = () => {
         <div className="mt-12 pt-8 border-t border-brand-gray-700">
           <div className="flex flex-col md:flex-row justify-between items-center">
             <p className="text-brand-gray-400 text-sm">
-              © {currentYear} {SITE_CONFIG.name}. All rights reserved.
+              © 2010-{currentYear} {SITE_CONFIG.name}. All rights reserved.
             </p>
             <div className="flex space-x-6 mt-4 md:mt-0">
               <Link

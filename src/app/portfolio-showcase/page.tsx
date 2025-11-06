@@ -155,60 +155,119 @@ export default function PortfolioShowcasePage() {
           </div>
         </section>
 
-        {/* Search & Filter Section */}
-        <section className="py-12 bg-gradient-to-b from-brand-light to-white sticky top-0 z-40 backdrop-blur-sm" data-animate id="filters">
-          <div className="container">
-            <div className="transition-all duration-700 opacity-100 translate-y-0">
-              {/* Search Bar */}
-              <div className="max-w-2xl mx-auto mb-8">
-                <div className="relative mt-6">
-                  <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                    <svg className="h-5 w-5 text-brand-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-                    </svg>
+        {/* Search & Filter Section - Only show when portfolios exist */}
+        {portfolios.length > 0 && (
+          <section className="py-12 bg-gradient-to-b from-brand-light to-white sticky top-0 z-40 backdrop-blur-sm" data-animate id="filters">
+            <div className="container">
+              <div className="transition-all duration-700 opacity-100 translate-y-0">
+                {/* Search Bar */}
+                <div className="max-w-2xl mx-auto mb-8">
+                  <div className="relative mt-6">
+                    <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                      <svg className="h-5 w-5 text-brand-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                      </svg>
+                    </div>
+                    <input
+                      type="text"
+                      placeholder="Search by name, role, company, or skills..."
+                      value={searchTerm}
+                      onChange={(e) => setSearchTerm(e.target.value)}
+                      className="w-full pl-10 pr-4 py-3 border border-brand-gray-300 rounded-xl focus:ring-2 focus:ring-brand-teal focus:border-brand-teal text-brand-gray-900 placeholder-brand-gray-500 shadow-lg"
+                    />
                   </div>
-                  <input
-                    type="text"
-                    placeholder="Search by name, role, company, or skills..."
-                    value={searchTerm}
-                    onChange={(e) => setSearchTerm(e.target.value)}
-                    className="w-full pl-10 pr-4 py-3 border border-brand-gray-300 rounded-xl focus:ring-2 focus:ring-brand-teal focus:border-brand-teal text-brand-gray-900 placeholder-brand-gray-500 shadow-lg"
-                  />
+                </div>
+
+                {/* Category Filters */}
+                <div className="flex flex-wrap gap-3 justify-center">
+                  {categories.map((category, index) => (
+                    <button
+                      key={category}
+                      onClick={() => setSelectedCategory(category)}
+                      className={`px-6 py-3 rounded-full font-semibold transition-all duration-300 transform hover:scale-105 ${
+                        category === selectedCategory
+                          ? 'bg-gradient-to-r from-brand-navy to-brand-teal text-white shadow-lg'
+                          : 'bg-white text-brand-gray-700 hover:bg-brand-navy hover:text-white border-2 border-brand-gray-200 hover:border-brand-navy shadow-md'
+                      }`}
+                      style={{ transitionDelay: `${index * 50}ms` }}
+                    >
+                      {category}
+                    </button>
+                  ))}
+                </div>
+
+                {/* Results Count */}
+                <div className="text-center mt-6">
+                  <p className="text-brand-gray-600">
+                    Showing <span className="font-semibold text-brand-navy">{filteredPortfolios.length}</span> portfolio{filteredPortfolios.length !== 1 ? 's' : ''}
+                    {selectedCategory !== 'All' && ` in ${selectedCategory}`}
+                    {searchTerm && ` matching "${searchTerm}"`}
+                  </p>
                 </div>
               </div>
+            </div>
+          </section>
+        )}
 
-              {/* Category Filters */}
-              <div className="flex flex-wrap gap-3 justify-center">
-                {categories.map((category, index) => (
-                  <button
-                    key={category}
-                    onClick={() => setSelectedCategory(category)}
-                    className={`px-6 py-3 rounded-full font-semibold transition-all duration-300 transform hover:scale-105 ${
-                      category === selectedCategory
-                        ? 'bg-gradient-to-r from-brand-navy to-brand-teal text-white shadow-lg'
-                        : 'bg-white text-brand-gray-700 hover:bg-brand-navy hover:text-white border-2 border-brand-gray-200 hover:border-brand-navy shadow-md'
-                    }`}
-                    style={{ transitionDelay: `${index * 50}ms` }}
-                  >
-                    {category}
-                  </button>
-                ))}
-              </div>
-
-              {/* Results Count */}
-              <div className="text-center mt-6">
-                <p className="text-brand-gray-600">
-                  Showing <span className="font-semibold text-brand-navy">{filteredPortfolios.length}</span> portfolio{filteredPortfolios.length !== 1 ? 's' : ''}
-                  {selectedCategory !== 'All' && ` in ${selectedCategory}`}
-                  {searchTerm && ` matching "${searchTerm}"`}
+        {/* Features Section - Show when no portfolios exist */}
+        {portfolios.length === 0 && (
+          <section className="py-16 bg-gradient-to-b from-brand-light to-white">
+            <div className="container">
+              <div className="text-center mb-16">
+                <h2 className="text-4xl md:text-5xl font-bold mb-6 text-brand-gray-900">
+                  Portfolio Features
+                  <span className="block leading-normal bg-gradient-to-r from-brand-navy to-brand-teal bg-clip-text text-transparent">
+                    Coming Soon
+                  </span>
+                </h2>
+                <p className="text-xl text-brand-gray-600 max-w-3xl mx-auto leading-relaxed">
+                  Our portfolio showcase will help you present your best work and connect with opportunities
                 </p>
               </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
+                <div className="text-center p-8 bg-white rounded-2xl shadow-lg border-2 border-brand-gray-300 hover:shadow-xl hover:border-brand-navy transition-all duration-300">
+                  <div className="w-16 h-16 bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl flex items-center justify-center mx-auto mb-6">
+                    <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
+                    </svg>
+                  </div>
+                  <h3 className="text-xl font-bold mb-4 text-brand-gray-900">Professional Templates</h3>
+                  <p className="text-brand-gray-600 leading-relaxed">
+                    Choose from industry-specific portfolio templates designed to showcase your work effectively
+                  </p>
+                </div>
+
+                <div className="text-center p-8 bg-white rounded-2xl shadow-lg border-2 border-brand-gray-300 hover:shadow-xl hover:border-brand-navy transition-all duration-300">
+                  <div className="w-16 h-16 bg-gradient-to-br from-green-500 to-green-600 rounded-xl flex items-center justify-center mx-auto mb-6">
+                    <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M13 10V3L4 14h7v7l9-11h-7z" />
+                    </svg>
+                  </div>
+                  <h3 className="text-xl font-bold mb-4 text-brand-gray-900">Smart Analytics</h3>
+                  <p className="text-brand-gray-600 leading-relaxed">
+                    Track portfolio views, engagement, and see which projects attract the most attention
+                  </p>
+                </div>
+
+                <div className="text-center p-8 bg-white rounded-2xl shadow-lg border-2 border-brand-gray-300 hover:shadow-xl hover:border-brand-navy transition-all duration-300">
+                  <div className="w-16 h-16 bg-gradient-to-br from-purple-500 to-purple-600 rounded-xl flex items-center justify-center mx-auto mb-6">
+                    <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+                    </svg>
+                  </div>
+                  <h3 className="text-xl font-bold mb-4 text-brand-gray-900">Direct Connections</h3>
+                  <p className="text-brand-gray-600 leading-relaxed">
+                    Connect directly with recruiters and hiring managers who discover your portfolio
+                  </p>
+                </div>
+              </div>
             </div>
-          </div>
-        </section>
+          </section>
+        )}
 
         {/* Portfolio Grid */}
-        <section className="py-20" data-animate id="portfolios">
+        <section className="py-16" data-animate id="portfolios">
           <div className="container">
             {portfolios.length === 0 ? (
               <div className="text-center py-20">
@@ -222,7 +281,7 @@ export default function PortfolioShowcasePage() {
                   We&apos;re building something amazing! Our portfolio showcase is launching soon. 
                   Be among the first professionals to showcase your work and connect with opportunities.
                 </p>
-                <div className="space-y-4 sm:space-y-0 sm:space-x-4 sm:flex sm:justify-center">
+                <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8">
                   <Link href="/signup">
                     <Button 
                       size="lg"
@@ -241,7 +300,7 @@ export default function PortfolioShowcasePage() {
                 </Button>
                   </Link>
                 </div>
-                <div className="mt-12 bg-gradient-to-r from-brand-navy/5 to-brand-teal/5 rounded-2xl p-8">
+                <div className="mt-8 bg-gradient-to-r from-brand-navy/5 to-brand-teal/5 rounded-2xl p-8">
                   <h4 className="text-xl font-bold text-brand-gray-900 mb-4">What&apos;s Coming Soon:</h4>
                   <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-left">
                     <div className="flex items-start space-x-3">
@@ -391,9 +450,9 @@ export default function PortfolioShowcasePage() {
         </section>
 
         {/* Success Stories */}
-        <section className="py-20 bg-gradient-to-b from-brand-light to-white" data-animate id="success-stories">
+        <section className="py-16 bg-gradient-to-b from-brand-light to-white" data-animate id="success-stories">
           <div className="container">
-            <div className="text-center mb-16 transition-all duration-700 opacity-100 translate-y-0">
+            <div className="text-center mb-12 transition-all duration-700 opacity-100 translate-y-0">
               <h2 className="text-4xl md:text-5xl font-bold mb-6 text-brand-gray-900">
                 Success Stories
               </h2>
@@ -465,7 +524,7 @@ export default function PortfolioShowcasePage() {
         </section>
 
         {/* CTA Section */}
-        <section className="py-20 bg-gradient-to-r from-brand-navy to-brand-teal text-white relative overflow-hidden">
+        <section className="py-16 bg-gradient-to-r from-brand-navy to-brand-teal text-white relative overflow-hidden">
           <div className="absolute inset-0 bg-gradient-to-r from-brand-navy/95 to-brand-teal/95"></div>
           <div className="container relative z-10">
             <div className="max-w-4xl mx-auto text-center">

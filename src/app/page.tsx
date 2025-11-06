@@ -1,7 +1,6 @@
 'use client';
 
 import Link from 'next/link';
-import Image from 'next/image';
 import { useState, useEffect } from 'react';
 import { useNotification } from '@/hooks/useNotification';
 import NotificationModal from '@/components/ui/NotificationModal';
@@ -289,7 +288,7 @@ export default function Home() {
               }
             ].map((feature, index) => (
               <Link key={index} href={feature.href} className="group animate-on-scroll" style={{animationDelay: `${index * 100}ms`}}>
-                <div className="relative p-8 bg-white rounded-3xl border border-gray-200 shadow-lg hover:shadow-2xl hover-lift overflow-hidden h-full">
+                <div className="relative p-8 bg-white rounded-3xl border-2 border-brand-gray-300 shadow-lg hover:shadow-2xl hover:border-brand-navy hover-lift overflow-hidden h-full transition-all duration-300">
                   {/* Badge */}
                   <div className="absolute top-4 right-4 px-3 py-1 bg-gradient-to-r from-brand-navy to-brand-teal text-white text-xs font-medium rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                     {feature.badge}
@@ -334,57 +333,41 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Animated Stats Section */}
+      {/* Static Stats Section */}
       <section className="py-24 bg-gradient-to-r from-brand-navy via-brand-teal to-brand-navy text-white relative overflow-hidden">
         <div className="absolute inset-0 bg-black/20"></div>
         <div className="container relative z-10">
-          <div className="text-center mb-16 animate-on-scroll">
+          <div className="text-center mb-16">
             <h2 className="text-4xl md:text-5xl font-bold mb-6">
               Trusted by Professionals
-              <span className="block gradient-text-gold">Worldwide</span>
+              <span className="block text-yellow-400">Worldwide</span>
             </h2>
             <p className="text-xl text-white/90 max-w-3xl mx-auto">
               Join thousands of successful professionals who have transformed their careers with our platform
             </p>
           </div>
 
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
-            {[
-              { 
-                number: `${animatedStats.users.toLocaleString()}+`, 
-                label: 'Active Users',
-                description: 'Professionals worldwide'
-              },
-              { 
-                number: `${animatedStats.success}%`, 
-                label: 'Success Rate',
-                description: 'Land interviews'
-              },
-              { 
-                number: `${animatedStats.counselors}+`, 
-                label: 'Expert Counselors',
-                description: 'Certified professionals'
-              },
-              { 
-                number: `${animatedStats.jobs.toLocaleString()}+`, 
-                label: 'Job Opportunities',
-                description: 'Updated daily'
-              }
-            ].map((stat, index) => (
-              <div key={index} className="animate-on-scroll hover-lift" style={{animationDelay: `${index * 200}ms`}}>
-                <div className="p-4 sm:p-6 bg-white/10 backdrop-blur-md rounded-2xl border border-white/20 hover:bg-white/20 transition-all duration-300">
-                  <div className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-2 sm:mb-3 stats-number leading-tight break-words">
-                    {stat.number}
-                  </div>
-                  <div className="text-sm sm:text-base md:text-lg font-semibold mb-1 sm:mb-2 text-white/95 leading-tight break-words">
-                    {stat.label}
-                  </div>
-                  <div className="text-xs sm:text-sm text-white/80 leading-tight break-words">
-                    {stat.description}
-                  </div>
-                </div>
-              </div>
-            ))}
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 text-center max-w-5xl mx-auto">
+            <div className="p-6 bg-white/10 rounded-2xl border border-white/20">
+              <div className="text-3xl md:text-4xl font-bold mb-2 text-yellow-400">100K+</div>
+              <div className="text-lg font-semibold mb-1 text-white">Active Users</div>
+              <div className="text-sm text-white/80">Professionals worldwide</div>
+            </div>
+            <div className="p-6 bg-white/10 rounded-2xl border border-white/20">
+              <div className="text-3xl md:text-4xl font-bold mb-2 text-yellow-400">95%</div>
+              <div className="text-lg font-semibold mb-1 text-white">Success Rate</div>
+              <div className="text-sm text-white/80">Land interviews</div>
+            </div>
+            <div className="p-6 bg-white/10 rounded-2xl border border-white/20">
+              <div className="text-3xl md:text-4xl font-bold mb-2 text-yellow-400">500+</div>
+              <div className="text-lg font-semibold mb-1 text-white">Expert Counselors</div>
+              <div className="text-sm text-white/80">Certified professionals</div>
+            </div>
+            <div className="p-6 bg-white/10 rounded-2xl border border-white/20">
+              <div className="text-3xl md:text-4xl font-bold mb-2 text-yellow-400">50K+</div>
+              <div className="text-lg font-semibold mb-1 text-white">Job Opportunities</div>
+              <div className="text-sm text-white/80">Updated daily</div>
+            </div>
           </div>
         </div>
       </section>
@@ -474,7 +457,7 @@ export default function Home() {
                 bgGradient: "from-teal-50 to-teal-100"
               }
             ].map((benefit, index) => (
-              <div key={index} className="testimonial-card rounded-2xl p-8 h-full animate-on-scroll" style={{animationDelay: `${index * 150}ms`}}>
+              <div key={index} className="testimonial-card rounded-2xl p-8 h-full animate-on-scroll border-2 border-brand-gray-300 hover:border-brand-teal transition-all duration-300" style={{animationDelay: `${index * 150}ms`}}>
                 <div className="flex items-center mb-6">
                   <div className={`w-16 h-16 bg-gradient-to-br ${benefit.gradient} rounded-2xl flex items-center justify-center text-white mr-4 transform group-hover:scale-110 transition-transform duration-300`}>
                     {benefit.icon}
@@ -578,7 +561,7 @@ export default function Home() {
                 applicants: "56+"
               }
             ].map((job, index) => (
-              <div key={index} className="bg-white rounded-2xl p-6 border border-gray-200 shadow-lg hover:shadow-xl hover-lift transition-all duration-300 animate-on-scroll" style={{animationDelay: `${index * 100}ms`}}>
+              <div key={index} className="bg-white rounded-2xl p-6 border-2 border-gray-300 shadow-lg hover:shadow-xl hover:border-gray-400 hover-lift transition-all duration-300 animate-on-scroll" style={{animationDelay: `${index * 100}ms`}}>
                 <div className="flex items-start justify-between mb-4">
                   <div className="w-12 h-12 bg-gradient-to-br from-brand-navy to-brand-teal rounded-xl flex items-center justify-center text-white text-sm font-bold">
                     {job.logo}
@@ -626,48 +609,103 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Client Logos Section */}
+      {/* Career Growth Metrics Section */}
       <section className="py-20 bg-white relative overflow-hidden">
         <div className="container relative">
           <div className="text-center mb-16 animate-on-scroll">
             <h2 className="text-3xl md:text-4xl font-bold mb-6 text-brand-gray-900">
-              Trusted by Professionals at
-              <span className="block gradient-text">Leading Companies</span>
+              Accelerate Your Career
+              <span className="block gradient-text">Growth Journey</span>
             </h2>
             <p className="text-lg text-brand-gray-600">
-              Our users work at the world&apos;s most innovative companies
+              Join thousands who transformed their careers with measurable results
             </p>
           </div>
 
-          <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-8 items-center">
-            {[
-              { name: "Google", logo: "/assets/company-logos/Google.png" },
-              { name: "Microsoft", logo: "/assets/company-logos/Microsoft_logo.svg.png" },
-              { name: "Apple", logo: "/assets/company-logos/Apple_logo.jpg" },
-              { name: "Amazon", logo: "/assets/company-logos/Amazon_icon.png" },
-              { name: "Meta", logo: "/assets/company-logos/Meta.jpg" },
-              { name: "Netflix", logo: "/assets/company-logos/netflix_logo_icon_170919.png" },
-              { name: "Tesla", logo: "/assets/company-logos/tesla-logo-tesla-icon-transparent-png-free-vector.jpg" },
-              { name: "Spotify", logo: "/assets/company-logos/Spotify_App_Logo.svg" },
-              { name: "Adobe", logo: "/assets/company-logos/Adobe-Logo-1993.jpg" },
-              { name: "Salesforce", logo: "/assets/company-logos/salesforce.png" },
-              { name: "Uber", logo: "/assets/company-logos/uber.png" },
-              { name: "Airbnb", logo: "/assets/company-logos/airbnb.jpg" }
-            ].map((client, index) => (
-              <div key={index} className="client-logo text-center p-6 rounded-xl hover:bg-gray-50 animate-on-scroll transition-all duration-300 group" style={{animationDelay: `${index * 50}ms`}}>
-                <div className="w-16 h-16 mx-auto mb-3 relative overflow-hidden rounded-lg bg-gray-50 shadow-sm group-hover:shadow-md transition-shadow duration-300 flex items-center justify-center">
-                  <Image
-                    src={client.logo}
-                    alt={`${client.name} logo`}
-                    width={48}
-                    height={48}
-                    className="object-contain group-hover:scale-105 transition-transform duration-300 max-w-12 max-h-12"
-                    style={{ filter: 'none' }}
-                  />
-                </div>
-                <p className="text-brand-gray-600 font-medium text-sm group-hover:text-brand-navy transition-colors duration-300">{client.name}</p>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
+            {/* Career Growth Cards */}
+            <div className="bg-gradient-to-br from-blue-50 via-blue-100 to-blue-50 rounded-2xl p-8 text-center hover:shadow-xl transition-all duration-300 hover:-translate-y-2 animate-on-scroll">
+              <div className="w-16 h-16 bg-gradient-to-br from-blue-500 to-blue-600 rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg">
+                <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
+                </svg>
               </div>
-            ))}
+              <div className="text-4xl font-bold text-blue-600 mb-2">100K+</div>
+              <div className="text-sm font-semibold text-brand-gray-700 mb-1">Active Professionals</div>
+              <div className="text-xs text-brand-gray-600">Building careers daily</div>
+            </div>
+
+            <div className="bg-gradient-to-br from-green-50 via-green-100 to-green-50 rounded-2xl p-8 text-center hover:shadow-xl transition-all duration-300 hover:-translate-y-2 animate-on-scroll" style={{animationDelay: '100ms'}}>
+              <div className="w-16 h-16 bg-gradient-to-br from-green-500 to-green-600 rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg">
+                <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+              </div>
+              <div className="text-4xl font-bold text-green-600 mb-2">95%</div>
+              <div className="text-sm font-semibold text-brand-gray-700 mb-1">Interview Success</div>
+              <div className="text-xs text-brand-gray-600">Land interviews faster</div>
+            </div>
+
+            <div className="bg-gradient-to-br from-purple-50 via-purple-100 to-purple-50 rounded-2xl p-8 text-center hover:shadow-xl transition-all duration-300 hover:-translate-y-2 animate-on-scroll" style={{animationDelay: '200ms'}}>
+              <div className="w-16 h-16 bg-gradient-to-br from-purple-500 to-purple-600 rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg">
+                <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+                </svg>
+              </div>
+              <div className="text-4xl font-bold text-purple-600 mb-2">500+</div>
+              <div className="text-sm font-semibold text-brand-gray-700 mb-1">Expert Counselors</div>
+              <div className="text-xs text-brand-gray-600">Certified professionals</div>
+            </div>
+
+            <div className="bg-gradient-to-br from-orange-50 via-orange-100 to-orange-50 rounded-2xl p-8 text-center hover:shadow-xl transition-all duration-300 hover:-translate-y-2 animate-on-scroll" style={{animationDelay: '300ms'}}>
+              <div className="w-16 h-16 bg-gradient-to-br from-orange-500 to-orange-600 rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg">
+                <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m8 0H8m8 0v2a2 2 0 002 2h2a2 2 0 002-2V8a2 2 0 00-2-2h-2z" />
+                </svg>
+              </div>
+              <div className="text-4xl font-bold text-orange-600 mb-2">50K+</div>
+              <div className="text-sm font-semibold text-brand-gray-700 mb-1">Job Opportunities</div>
+              <div className="text-xs text-brand-gray-600">Updated daily</div>
+            </div>
+          </div>
+
+          {/* Success Pathways */}
+          <div className="bg-gradient-to-br from-gray-50 to-white rounded-3xl p-8 lg:p-12 border border-gray-200 shadow-lg animate-on-scroll">
+            <h3 className="text-2xl font-bold text-brand-gray-900 mb-8 text-center">Career Success Pathways</h3>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              <div className="flex items-start space-x-4 p-4 bg-white rounded-xl hover:shadow-md transition-all duration-300">
+                <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-blue-600 rounded-lg flex items-center justify-center flex-shrink-0">
+                  <span className="text-white font-bold text-xl">1</span>
+                </div>
+                <div>
+                  <h4 className="font-bold text-brand-gray-900 mb-2">Freshers & Graduates</h4>
+                  <p className="text-sm text-brand-gray-600">Start your career journey with our entry-level focused resources</p>
+                  <div className="mt-2 text-xs text-brand-navy font-semibold">₹3.5-6 LPA avg. package</div>
+                </div>
+              </div>
+
+              <div className="flex items-start space-x-4 p-4 bg-white rounded-xl hover:shadow-md transition-all duration-300">
+                <div className="w-12 h-12 bg-gradient-to-br from-green-500 to-green-600 rounded-lg flex items-center justify-center flex-shrink-0">
+                  <span className="text-white font-bold text-xl">2</span>
+                </div>
+                <div>
+                  <h4 className="font-bold text-brand-gray-900 mb-2">Career Switchers</h4>
+                  <p className="text-sm text-brand-gray-600">Transition to new industries with expert guidance and support</p>
+                  <div className="mt-2 text-xs text-brand-navy font-semibold">₹5-8 LPA salary jump</div>
+                </div>
+              </div>
+
+              <div className="flex items-start space-x-4 p-4 bg-white rounded-xl hover:shadow-md transition-all duration-300">
+                <div className="w-12 h-12 bg-gradient-to-br from-purple-500 to-purple-600 rounded-lg flex items-center justify-center flex-shrink-0">
+                  <span className="text-white font-bold text-xl">3</span>
+                </div>
+                <div>
+                  <h4 className="font-bold text-brand-gray-900 mb-2">Senior Professionals</h4>
+                  <p className="text-sm text-brand-gray-600">Advance to leadership roles with strategic career planning</p>
+                  <div className="mt-2 text-xs text-brand-navy font-semibold">₹15-30 LPA packages</div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>

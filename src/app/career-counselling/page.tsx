@@ -355,7 +355,7 @@ export default function CareerCounsellingPage() {
                 </ul>
                 
                     <Button 
-                      variant={service.popular ? "primary" : "outline"} 
+                      variant="primary" 
                       size="sm" 
                       fullWidth
                       className="group-hover:shadow-lg transition-shadow duration-300"
@@ -477,27 +477,27 @@ export default function CareerCounsellingPage() {
       </section>
 
       {/* How It Works */}
-        <section className="py-20 bg-gradient-to-b from-brand-light to-white" data-animate id="how-it-works">
+        <section className="py-12 bg-gradient-to-b from-brand-light to-white" data-animate id="how-it-works">
         <div className="container">
-            <div className={`text-center mb-16 transition-all duration-700 ${
+            <div className={`text-center mb-12 transition-all duration-700 ${
               animateOnScroll['how-it-works'] ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
             }`}>
-              <h2 className="text-4xl md:text-5xl font-bold mb-6 text-brand-gray-900">
+              <h2 className="text-3xl md:text-4xl font-bold mb-4 text-brand-gray-900">
               How It Works
             </h2>
-              <p className="text-xl text-brand-gray-600 max-w-3xl mx-auto leading-relaxed">
+              <p className="text-lg text-brand-gray-600 max-w-3xl mx-auto leading-relaxed">
                 Get started with professional career counselling in just three simple steps
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
             {[
               {
                 step: '1',
                 title: 'Choose Your Service',
                   description: 'Select the type of counselling that best fits your career needs and goals.',
                 icon: (
-                  <svg className="w-16 h-16" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 5H7a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 7l2 2 4-4"/>
                   </svg>
                 ),
@@ -508,7 +508,7 @@ export default function CareerCounsellingPage() {
                   title: 'Book Your Session',
                   description: 'Pick your preferred counselor and schedule a convenient time that works for you.',
                 icon: (
-                  <svg className="w-16 h-16" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
                   </svg>
                 ),
@@ -519,7 +519,7 @@ export default function CareerCounsellingPage() {
                 title: 'Get Expert Guidance',
                   description: 'Receive personalized advice and actionable strategies to accelerate your career.',
                 icon: (
-                  <svg className="w-16 h-16" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/>
                   </svg>
                 ),
@@ -535,19 +535,19 @@ export default function CareerCounsellingPage() {
                   }`}
                   style={{ transitionDelay: `${index * 200}ms` }}
                 >
-                  <div className="relative mb-6">
-                    <div className="w-20 h-20 bg-gradient-to-r from-brand-navy to-brand-teal text-white rounded-full flex items-center justify-center text-2xl font-bold mx-auto group-hover:shadow-xl transition-shadow duration-300">
+                  <div className="relative mb-4">
+                    <div className="w-14 h-14 bg-gradient-to-r from-brand-navy to-brand-teal text-white rounded-full flex items-center justify-center text-xl font-bold mx-auto group-hover:shadow-xl transition-shadow duration-300">
                   {item.step}
                 </div>
                     {index < 2 && (
-                      <div className="hidden md:block absolute top-10 left-full w-8 h-0.5 bg-brand-gray-300 transform -translate-y-0.5"></div>
+                      <div className="hidden md:block absolute top-7 left-full w-8 h-0.5 bg-brand-gray-300 transform -translate-y-0.5"></div>
                     )}
                   </div>
-                  <div className={`inline-flex items-center justify-center w-24 h-24 bg-gradient-to-br ${item.color} text-white rounded-xl mb-4 group-hover:scale-110 transition-transform duration-300`}>
+                  <div className={`inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br ${item.color} text-white rounded-xl mb-3 group-hover:scale-110 transition-transform duration-300`}>
                     {item.icon}
                   </div>
-                  <h3 className="text-xl font-bold mb-3 text-brand-gray-900">{item.title}</h3>
-                  <p className="text-brand-gray-600 leading-relaxed">{item.description}</p>
+                  <h3 className="text-lg font-bold mb-2 text-brand-gray-900">{item.title}</h3>
+                  <p className="text-sm text-brand-gray-600 leading-relaxed">{item.description}</p>
               </div>
             ))}
           </div>

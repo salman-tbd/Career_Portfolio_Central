@@ -120,17 +120,18 @@ h1, h2, h3, h4, h5, h6 {
   background-color: white;
   border-radius: 0.75rem;
   box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
-  border: 1px solid #cbd5e1;
+  border: 2px solid #d1d5db; /* brand-gray-300 */
   padding: 1.5rem;
 }
 
 .card-hover {
-  transition: transform 0.2s ease-out, box-shadow 0.2s ease-out;
+  transition: transform 0.2s ease-out, box-shadow 0.2s ease-out, border-color 0.2s ease-out;
 }
 
 .card-hover:hover {
   transform: scale(1.05);
   box-shadow: 0 10px 25px -3px rgba(0, 0, 0, 0.1);
+  border-color: #1e3a8a; /* brand-navy */
 }
 
 /* Utility classes */
@@ -525,7 +526,7 @@ h1, h2, h3, h4, h5, h6 {
 /* Testimonial card styles */
 .testimonial-card {
   background: linear-gradient(145deg, #ffffff 0%, #f8fafc 100%);
-  border: 1px solid rgba(226, 232, 240, 0.8);
+  border: 2px solid #d1d5db;
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   position: relative;
   overflow: hidden;
@@ -549,7 +550,7 @@ h1, h2, h3, h4, h5, h6 {
 .testimonial-card:hover {
   transform: translateY(-5px) scale(1.02);
   box-shadow: 0 25px 50px rgba(0, 0, 0, 0.1);
-  border-color: rgba(30, 58, 138, 0.3);
+  border-color: #14b8a6;
 }
 
 /* Stats counter animation */

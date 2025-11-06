@@ -229,7 +229,7 @@ export default function HelpCenterPage() {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {supportResources.map((resource, index) => (
               <Link key={index} href={resource.href} className="group">
-                <div className="p-8 bg-white rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-500 border border-gray-100 group-hover:border-gray-200 hover:scale-105 relative overflow-hidden">
+                <div className="p-8 bg-white rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-500 border-2 border-brand-gray-300 group-hover:border-brand-navy hover:scale-105 relative overflow-hidden">
                   <div className={`inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-gradient-to-r ${resource.gradient} text-white mb-6 group-hover:scale-110 transition-transform duration-300`}>
                     {resource.icon}
                   </div>
@@ -287,7 +287,7 @@ export default function HelpCenterPage() {
           <div className="max-w-4xl mx-auto">
             {filteredFaqs.map((faq, index) => (
               <div key={index} className="mb-4">
-                <div className="bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden hover:shadow-xl transition-all duration-300">
+                <div className="bg-white rounded-2xl shadow-lg border-2 border-brand-gray-300 overflow-hidden hover:shadow-xl hover:border-brand-navy transition-all duration-300">
                   <button
                     onClick={() => setOpenFaq(openFaq === index ? null : index)}
                     className="w-full px-8 py-6 text-left hover:bg-gray-50 transition-colors duration-300 focus:outline-none focus:bg-gray-50"
@@ -355,7 +355,7 @@ export default function HelpCenterPage() {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-4xl mx-auto">
             {quickLinks.map((link, index) => (
               <Link key={index} href={link.href} className="group">
-                <div className="p-6 bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100 group-hover:border-brand-navy/20 hover:scale-105">
+                <div className="p-6 bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 border-2 border-brand-gray-300 group-hover:border-brand-teal hover:scale-105">
                   <div className="flex items-center justify-between">
                     <h3 className="text-lg font-semibold text-brand-gray-900 group-hover:text-brand-navy transition-colors duration-300">
                       {link.title}

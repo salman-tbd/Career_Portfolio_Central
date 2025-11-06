@@ -78,19 +78,6 @@ export default function ContactPage() {
       color: 'text-purple-600',
       action: '#'
     },
-    {
-      icon: (
-        <svg className="w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
-        </svg>
-      ),
-      title: 'Live Chat',
-      primary: 'Available 24/7',
-      secondary: 'Instant response',
-      bgColor: 'from-orange-500 to-orange-600',
-      color: 'text-orange-600',
-      action: '#'
-    },
   ];
 
   const officeInfo: OfficeInfo[] = [
@@ -105,8 +92,7 @@ export default function ContactPage() {
     {
       title: 'Response Times',
       items: [
-        { day: 'Email Support', time: 'Within 24 hours', badge: 'bg-green-100 text-green-800' },
-        { day: 'Live Chat', time: 'Instant', badge: 'bg-blue-100 text-blue-800' },
+        { day: 'Email Support', time: 'Get back soon', badge: 'bg-green-100 text-green-800' },
         { day: 'Phone Support', time: 'Business hours', badge: 'bg-yellow-100 text-yellow-800' },
       ]
     }
@@ -200,7 +186,7 @@ export default function ContactPage() {
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                       </svg>
                     </div>
-                    <span className="text-sm font-medium">Response within 24 hours</span>
+                    <span className="text-sm font-medium">Response soon</span>
                   </div>
                 </div>
               </div>
@@ -229,7 +215,7 @@ export default function ContactPage() {
                 <a
                   key={index}
                   href={method.action}
-                  className="group relative bg-white rounded-2xl p-4 sm:p-6 md:p-8 shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 border border-gray-100 overflow-hidden"
+                  className="group relative bg-white rounded-2xl p-4 sm:p-6 md:p-8 shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 border-2 border-brand-gray-300 hover:border-brand-teal overflow-hidden"
                 >
                   {/* Background Gradient */}
                   <div className={`absolute inset-0 bg-gradient-to-br ${method.bgColor} opacity-0 group-hover:opacity-5 transition-opacity duration-300`}></div>
@@ -271,7 +257,7 @@ export default function ContactPage() {
               <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
                 {/* Contact Form - Takes 2 columns */}
                 <div className="lg:col-span-2">
-                  <div className="bg-white rounded-2xl shadow-xl border border-gray-100 p-8 lg:p-12">
+                  <div className="bg-white rounded-2xl shadow-xl border-2 border-brand-gray-300 p-8 lg:p-12 hover:border-brand-navy transition-all duration-300">
                     <div className="mb-8">
                       <h2 className="text-3xl md:text-4xl font-bold mb-4 text-brand-gray-900">
                         Send Us a Message
@@ -338,7 +324,7 @@ export default function ContactPage() {
                 <div className="space-y-6">
                   {/* Office Hours & Response Times */}
                   {officeInfo.map((info, index) => (
-                    <div key={index} className="bg-white rounded-2xl shadow-lg border border-gray-100 p-6">
+                    <div key={index} className="bg-white rounded-2xl shadow-lg border-2 border-brand-gray-300 hover:border-brand-teal p-6 transition-all duration-300">
                       <h3 className="text-xl font-bold mb-4 text-brand-gray-900 flex items-center">
                         {info.title}
                         {index === 0 ? (
@@ -363,28 +349,6 @@ export default function ContactPage() {
                       </div>
                     </div>
                   ))}
-
-                  {/* Emergency Support */}
-                  <div className="bg-gradient-to-br from-red-50 to-orange-50 border border-red-100 rounded-2xl p-6">
-                    <div className="flex items-start">
-                      <div className="flex-shrink-0">
-                        <div className="w-10 h-10 bg-red-100 rounded-lg flex items-center justify-center">
-                          <svg className="w-5 h-5 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.732-.833-2.5 0L4.232 16.5c-.77.833.192 2.5 1.732 2.5z" />
-                          </svg>
-                        </div>
-                      </div>
-                      <div className="ml-4">
-                        <h3 className="text-lg font-bold text-red-900 mb-2">
-                          Emergency Support
-                        </h3>
-                        <p className="text-red-700 text-sm leading-relaxed">
-                          For urgent technical issues affecting your account or billing concerns, 
-                          please use our live chat feature for immediate assistance.
-                        </p>
-                      </div>
-                    </div>
-                  </div>
 
                   {/* Contact Image */}
                   <div className="relative h-48 rounded-2xl overflow-hidden shadow-lg">
@@ -421,7 +385,7 @@ export default function ContactPage() {
             <div className="max-w-6xl mx-auto">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                 {faqs.map((faq, index) => (
-                  <div key={index} className="bg-white rounded-2xl shadow-lg border border-gray-100 p-6 hover:shadow-xl transition-shadow duration-300">
+                  <div key={index} className="bg-white rounded-2xl shadow-lg border-2 border-brand-gray-300 p-6 hover:shadow-xl hover:border-brand-teal transition-all duration-300">
                     <div className="flex items-start">
                       <div className="flex-shrink-0">
                         <div className="w-8 h-8 bg-brand-teal bg-opacity-10 rounded-lg flex items-center justify-center">

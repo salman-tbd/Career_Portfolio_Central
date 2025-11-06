@@ -405,17 +405,17 @@ export default function JobListingsPage() {
         {/* Job Listings */}
         <section className="py-20">
           <div className="container">
-            <div className="flex justify-between items-center mb-8">
+            <div className="flex flex-col md:flex-row md:justify-between md:items-center gap-4 mb-8">
               <div>
-                <h2 className="text-3xl font-bold text-brand-gray-900">Job Opportunities</h2>
-                <p className="text-brand-gray-600 mt-2">Showing {filteredJobs.length} jobs matching your criteria</p>
+                <h2 className="text-2xl md:text-3xl font-bold text-brand-gray-900">Job Opportunities</h2>
+                <p className="text-brand-gray-600 mt-2 text-sm md:text-base">Showing {filteredJobs.length} jobs matching your criteria</p>
               </div>
-              <div className="flex items-center space-x-4">
-                <span className="text-sm text-brand-gray-600">Sort by:</span>
+              <div className="flex items-center gap-2 flex-shrink-0">
+                <span className="text-sm text-brand-gray-600 whitespace-nowrap">Sort by:</span>
                 <select 
                   value={sortBy}
                   onChange={(e) => setSortBy(e.target.value)}
-                  className="px-3 py-2 border border-brand-gray-300 rounded-lg text-sm focus:ring-2 focus:ring-blue-500 focus:border-brand-navy"
+                  className="px-3 py-2 border border-brand-gray-300 rounded-lg text-sm focus:ring-2 focus:ring-blue-500 focus:border-brand-navy min-w-0 flex-1"
                 >
                   {filters.sortOptions.map((option) => (
                     <option key={option} value={option}>{option}</option>

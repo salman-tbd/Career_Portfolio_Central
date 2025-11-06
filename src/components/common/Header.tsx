@@ -10,25 +10,34 @@ import { NAVIGATION_ITEMS } from '@/utils/constants';
 const Header: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
-  const [isMoreOpen, setIsMoreOpen] = useState(false);
-  const [isMobileMoreOpen, setIsMobileMoreOpen] = useState(false);
-  const moreDropdownRef = useRef<HTMLDivElement>(null);
-  const moreButtonRef = useRef<HTMLButtonElement>(null);
+  const [isServicesOpen, setIsServicesOpen] = useState(false);
+  const [isResourcesOpen, setIsResourcesOpen] = useState(false);
+  const [isMobileServicesOpen, setIsMobileServicesOpen] = useState(false);
+  const [isMobileResourcesOpen, setIsMobileResourcesOpen] = useState(false);
+  const servicesDropdownRef = useRef<HTMLDivElement>(null);
+  const servicesButtonRef = useRef<HTMLButtonElement>(null);
+  const resourcesDropdownRef = useRef<HTMLDivElement>(null);
+  const resourcesButtonRef = useRef<HTMLButtonElement>(null);
   const pathname = usePathname();
 
   // Define primary navigation items and filter arrays
   const PRIMARY_ROUTES_BEFORE_SERVICES = ['/', '/about'];
-  const PRIMARY_ROUTES_AFTER_SERVICES = ['/blog', '/contact'];
-  const AUTH_ROUTES = ['/login', '/signup'];
+  const PRIMARY_ROUTES_AFTER_SERVICES = ['/pricing', '/blog', '/contact'];
+  
+  // Services dropdown - only actual services
+  const SERVICES_ROUTES = ['/services', '/resume-builder', '/portfolio-showcase', '/job-listings', '/career-counselling', '/membership'];
+  
+  // Resources dropdown - informational pages
+  const RESOURCES_ROUTES = ['/resources', '/success-stories', '/industries', '/webinars', '/for-students', '/faq'];
   
   const PRIMARY_ITEMS_BEFORE = NAVIGATION_ITEMS.filter(item => PRIMARY_ROUTES_BEFORE_SERVICES.includes(item.href));
   const PRIMARY_ITEMS_AFTER = NAVIGATION_ITEMS.filter(item => PRIMARY_ROUTES_AFTER_SERVICES.includes(item.href));
-  const MORE_ITEMS = NAVIGATION_ITEMS.filter(item => 
-    ![...PRIMARY_ROUTES_BEFORE_SERVICES, ...PRIMARY_ROUTES_AFTER_SERVICES].includes(item.href) && !AUTH_ROUTES.includes(item.href)
-  );
+  const SERVICES_ITEMS = NAVIGATION_ITEMS.filter(item => SERVICES_ROUTES.includes(item.href));
+  const RESOURCES_ITEMS = NAVIGATION_ITEMS.filter(item => RESOURCES_ROUTES.includes(item.href));
 
-  // Check if current page is in More dropdown
-  const isCurrentPageInMore = MORE_ITEMS.some(item => item.href === pathname);
+  // Check if current page is in dropdowns
+  const isCurrentPageInServices = SERVICES_ITEMS.some(item => item.href === pathname);
+  const isCurrentPageInResources = RESOURCES_ITEMS.some(item => item.href === pathname);
 
   // Handle scroll effect for backdrop blur and shadow
   useEffect(() => {
@@ -45,20 +54,23 @@ const Header: React.FC = () => {
   useEffect(() => {
     const handleEscape = (e: KeyboardEvent) => {
       if (e.key === 'Escape') {
-        setIsMoreOpen(false);
+        setIsServicesOpen(false);
+        setIsResourcesOpen(false);
         setIsMenuOpen(false);
-        if (moreButtonRef.current) {
-          moreButtonRef.current.focus();
-        }
       }
     };
 
     const handleClickOutside = (e: MouseEvent) => {
       const target = e.target as HTMLElement;
       
-      // Close More dropdown if clicking outside
-      if (isMoreOpen && !moreDropdownRef.current?.contains(target) && !moreButtonRef.current?.contains(target)) {
-        setIsMoreOpen(false);
+      // Close Services dropdown if clicking outside
+      if (isServicesOpen && !servicesDropdownRef.current?.contains(target) && !servicesButtonRef.current?.contains(target)) {
+        setIsServicesOpen(false);
+      }
+      
+      // Close Resources dropdown if clicking outside
+      if (isResourcesOpen && !resourcesDropdownRef.current?.contains(target) && !resourcesButtonRef.current?.contains(target)) {
+        setIsResourcesOpen(false);
       }
       
       // Close mobile menu if clicking outside
@@ -67,7 +79,7 @@ const Header: React.FC = () => {
       }
     };
 
-    if (isMoreOpen || isMenuOpen) {
+    if (isServicesOpen || isResourcesOpen || isMenuOpen) {
       document.addEventListener('keydown', handleEscape);
       document.addEventListener('click', handleClickOutside);
       
@@ -83,7 +95,7 @@ const Header: React.FC = () => {
       document.removeEventListener('click', handleClickOutside);
       document.body.style.overflow = 'unset';
     };
-  }, [isMoreOpen, isMenuOpen]);
+  }, [isServicesOpen, isResourcesOpen, isMenuOpen]);
 
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
 
@@ -139,34 +151,41 @@ const Header: React.FC = () => {
             ))}
 
             {/* Services Dropdown */}
-            <div className="relative" ref={moreDropdownRef}>
+            <div className="relative" ref={servicesDropdownRef}>
               <button
-                ref={moreButtonRef}
-                onMouseEnter={() => setIsMoreOpen(true)}
-                onFocus={() => setIsMoreOpen(true)}
+                ref={servicesButtonRef}
+                onMouseEnter={() => {
+                  setIsServicesOpen(true);
+                  setIsResourcesOpen(false);
+                }}
+                onFocus={() => {
+                  setIsServicesOpen(true);
+                  setIsResourcesOpen(false);
+                }}
                 onKeyDown={(e) => {
                   if (e.key === 'Enter' || e.key === ' ') {
                     e.preventDefault();
-                    setIsMoreOpen(!isMoreOpen);
+                    setIsServicesOpen(!isServicesOpen);
+                    setIsResourcesOpen(false);
                   }
                 }}
                 className={cn(
                   'relative px-4 py-2 text-sm font-medium rounded-lg transition-all duration-200 ease-in-out',
                   'focus:outline-none focus:ring-2 focus:ring-brand-navy focus:ring-offset-2',
                   'hover:bg-brand-gray-100/80 flex items-center space-x-1',
-                  isCurrentPageInMore || isMoreOpen
+                  isCurrentPageInServices || isServicesOpen
                     ? 'text-brand-navy bg-brand-gray-100'
                     : 'text-brand-gray-700 hover:text-brand-navy'
                 )}
-                aria-expanded={isMoreOpen}
+                aria-expanded={isServicesOpen}
                 aria-haspopup="true"
-                aria-controls="more-dropdown"
+                aria-controls="services-dropdown"
               >
                 <span>Services</span>
                 <svg
                   className={cn(
                     'w-4 h-4 transition-transform duration-200',
-                    isMoreOpen ? 'rotate-180' : ''
+                    isServicesOpen ? 'rotate-180' : ''
                   )}
                   fill="none"
                   stroke="currentColor"
@@ -182,18 +201,97 @@ const Header: React.FC = () => {
                 </svg>
               </button>
 
-              {/* Dropdown Menu */}
-              {isMoreOpen && (
+              {/* Services Dropdown Menu */}
+              {isServicesOpen && (
                 <div
-                  id="more-dropdown"
+                  id="services-dropdown"
                   className="absolute top-full left-0 mt-1 w-56 bg-white rounded-lg shadow-lg border border-brand-gray-200 py-2 z-50"
-                  onMouseLeave={() => setIsMoreOpen(false)}
+                  onMouseLeave={() => setIsServicesOpen(false)}
                 >
-                  {MORE_ITEMS.map((item) => (
+                  {SERVICES_ITEMS.map((item) => (
                     <Link
                       key={item.href}
                       href={item.href}
-                      onClick={() => setIsMoreOpen(false)}
+                      onClick={() => setIsServicesOpen(false)}
+                      className={cn(
+                        'block px-4 py-2 text-sm font-medium transition-colors duration-200',
+                        'focus:outline-none focus:ring-2 focus:ring-brand-navy focus:ring-offset-2 focus:ring-offset-white',
+                        pathname === item.href
+                          ? 'text-brand-navy bg-brand-gray-100 border-l-4 border-brand-navy'
+                          : 'text-brand-gray-700 hover:text-brand-navy hover:bg-brand-gray-50'
+                      )}
+                      aria-current={pathname === item.href ? 'page' : undefined}
+                    >
+                      {item.name}
+                    </Link>
+                  ))}
+                </div>
+              )}
+            </div>
+
+            {/* Resources Dropdown */}
+            <div className="relative" ref={resourcesDropdownRef}>
+              <button
+                ref={resourcesButtonRef}
+                onMouseEnter={() => {
+                  setIsResourcesOpen(true);
+                  setIsServicesOpen(false);
+                }}
+                onFocus={() => {
+                  setIsResourcesOpen(true);
+                  setIsServicesOpen(false);
+                }}
+                onKeyDown={(e) => {
+                  if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    setIsResourcesOpen(!isResourcesOpen);
+                    setIsServicesOpen(false);
+                  }
+                }}
+                className={cn(
+                  'relative px-4 py-2 text-sm font-medium rounded-lg transition-all duration-200 ease-in-out',
+                  'focus:outline-none focus:ring-2 focus:ring-brand-navy focus:ring-offset-2',
+                  'hover:bg-brand-gray-100/80 flex items-center space-x-1',
+                  isCurrentPageInResources || isResourcesOpen
+                    ? 'text-brand-navy bg-brand-gray-100'
+                    : 'text-brand-gray-700 hover:text-brand-navy'
+                )}
+                aria-expanded={isResourcesOpen}
+                aria-haspopup="true"
+                aria-controls="resources-dropdown"
+              >
+                <span>Resources</span>
+                <svg
+                  className={cn(
+                    'w-4 h-4 transition-transform duration-200',
+                    isResourcesOpen ? 'rotate-180' : ''
+                  )}
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                  aria-hidden="true"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M19 9l-7 7-7-7"
+                  />
+                </svg>
+              </button>
+
+              {/* Resources Dropdown Menu */}
+              {isResourcesOpen && (
+                <div
+                  id="resources-dropdown"
+                  className="absolute top-full left-0 mt-1 w-56 bg-white rounded-lg shadow-lg border border-brand-gray-200 py-2 z-50"
+                  onMouseLeave={() => setIsResourcesOpen(false)}
+                >
+                  {RESOURCES_ITEMS.map((item) => (
+                    <Link
+                      key={item.href}
+                      href={item.href}
+                      onClick={() => setIsResourcesOpen(false)}
                       className={cn(
                         'block px-4 py-2 text-sm font-medium transition-colors duration-200',
                         'focus:outline-none focus:ring-2 focus:ring-brand-navy focus:ring-offset-2 focus:ring-offset-white',
@@ -283,10 +381,10 @@ const Header: React.FC = () => {
         {/* Mobile Menu */}
         <div 
           className={cn(
-            'lg:hidden transition-all duration-300 ease-in-out overflow-hidden',
+            'lg:hidden transition-all duration-300 ease-in-out',
             isMenuOpen 
-              ? 'max-h-screen opacity-100 pb-6' 
-              : 'max-h-0 opacity-0 pb-0'
+              ? 'max-h-[calc(100vh-80px)] opacity-100 pb-6 overflow-y-auto' 
+              : 'max-h-0 opacity-0 pb-0 overflow-hidden'
           )}
           data-mobile-menu
         >
@@ -314,28 +412,32 @@ const Header: React.FC = () => {
               {/* Mobile Services Section */}
               <div className="mt-2">
                 <button
-                  onClick={() => setIsMobileMoreOpen(!isMobileMoreOpen)}
+                  onClick={() => {
+                    setIsMobileServicesOpen(!isMobileServicesOpen);
+                    setIsMobileResourcesOpen(false);
+                  }}
                   onKeyDown={(e) => {
                     if (e.key === 'Enter' || e.key === ' ') {
                       e.preventDefault();
-                      setIsMobileMoreOpen(!isMobileMoreOpen);
+                      setIsMobileServicesOpen(!isMobileServicesOpen);
+                      setIsMobileResourcesOpen(false);
                     }
                   }}
                   className={cn(
                     'w-full px-4 py-3 text-base font-medium rounded-lg transition-all duration-200 text-left flex items-center justify-between',
                     'focus:outline-none focus:ring-2 focus:ring-brand-navy focus:ring-offset-2',
-                    isCurrentPageInMore || isMobileMoreOpen
+                    isCurrentPageInServices || isMobileServicesOpen
                       ? 'text-brand-navy bg-brand-gray-100'
                       : 'text-brand-gray-700 hover:text-brand-navy hover:bg-brand-gray-50'
                   )}
-                  aria-expanded={isMobileMoreOpen}
-                  aria-controls="mobile-more-items"
+                  aria-expanded={isMobileServicesOpen}
+                  aria-controls="mobile-services-items"
                 >
                   <span>Services</span>
                   <svg
                     className={cn(
                       'w-5 h-5 transition-transform duration-200',
-                      isMobileMoreOpen ? 'rotate-180' : ''
+                      isMobileServicesOpen ? 'rotate-180' : ''
                     )}
                     fill="none"
                     stroke="currentColor"
@@ -351,16 +453,90 @@ const Header: React.FC = () => {
                   </svg>
                 </button>
 
-                {/* Collapsible More Items */}
+                {/* Collapsible Services Items */}
                 <div
-                  id="mobile-more-items"
+                  id="mobile-services-items"
                   className={cn(
                     'overflow-hidden transition-all duration-300 ease-in-out',
-                    isMobileMoreOpen ? 'max-h-96 opacity-100 mt-1' : 'max-h-0 opacity-0'
+                    isMobileServicesOpen ? 'max-h-96 opacity-100 mt-1' : 'max-h-0 opacity-0'
                   )}
                 >
                   <div className="pl-4 space-y-1">
-                    {MORE_ITEMS.map((item) => (
+                    {SERVICES_ITEMS.map((item) => (
+                      <Link
+                        key={item.href}
+                        href={item.href}
+                        onClick={toggleMenu}
+                        className={cn(
+                          'block px-4 py-3 text-base font-medium rounded-lg transition-all duration-200',
+                          'focus:outline-none focus:ring-2 focus:ring-brand-navy focus:ring-offset-2',
+                          pathname === item.href
+                            ? 'text-brand-navy bg-brand-gray-100 border-l-4 border-brand-navy'
+                            : 'text-brand-gray-700 hover:text-brand-navy hover:bg-brand-gray-50'
+                        )}
+                        aria-current={pathname === item.href ? 'page' : undefined}
+                      >
+                        {item.name}
+                      </Link>
+                    ))}
+                  </div>
+                </div>
+              </div>
+
+              {/* Mobile Resources Section */}
+              <div className="mt-2">
+                <button
+                  onClick={() => {
+                    setIsMobileResourcesOpen(!isMobileResourcesOpen);
+                    setIsMobileServicesOpen(false);
+                  }}
+                  onKeyDown={(e) => {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                      e.preventDefault();
+                      setIsMobileResourcesOpen(!isMobileResourcesOpen);
+                      setIsMobileServicesOpen(false);
+                    }
+                  }}
+                  className={cn(
+                    'w-full px-4 py-3 text-base font-medium rounded-lg transition-all duration-200 text-left flex items-center justify-between',
+                    'focus:outline-none focus:ring-2 focus:ring-brand-navy focus:ring-offset-2',
+                    isCurrentPageInResources || isMobileResourcesOpen
+                      ? 'text-brand-navy bg-brand-gray-100'
+                      : 'text-brand-gray-700 hover:text-brand-navy hover:bg-brand-gray-50'
+                  )}
+                  aria-expanded={isMobileResourcesOpen}
+                  aria-controls="mobile-resources-items"
+                >
+                  <span>Resources</span>
+                  <svg
+                    className={cn(
+                      'w-5 h-5 transition-transform duration-200',
+                      isMobileResourcesOpen ? 'rotate-180' : ''
+                    )}
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                    aria-hidden="true"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M19 9l-7 7-7-7"
+                    />
+                  </svg>
+                </button>
+
+                {/* Collapsible Resources Items */}
+                <div
+                  id="mobile-resources-items"
+                  className={cn(
+                    'overflow-hidden transition-all duration-300 ease-in-out',
+                    isMobileResourcesOpen ? 'max-h-96 opacity-100 mt-1' : 'max-h-0 opacity-0'
+                  )}
+                >
+                  <div className="pl-4 space-y-1">
+                    {RESOURCES_ITEMS.map((item) => (
                       <Link
                         key={item.href}
                         href={item.href}

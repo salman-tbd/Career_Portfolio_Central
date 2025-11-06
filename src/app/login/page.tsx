@@ -68,21 +68,46 @@ const LoginPage: React.FC = () => {
 
   return (
     <>
-      <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-brand-light via-white to-blue-50 py-12 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-md w-full space-y-8">
+      <div className="min-h-screen flex items-center justify-center relative overflow-hidden">
+        {/* Professional Background */}
+        <div className="absolute inset-0 bg-gradient-to-br from-brand-navy via-brand-navy to-brand-teal"></div>
+        
+        {/* Animated Background Elements */}
+        <div className="absolute inset-0">
+          {/* Grid Pattern */}
+          <div className="absolute inset-0 opacity-5">
+            <div className="grid grid-cols-12 gap-4 h-full p-8">
+              {[...Array(48)].map((_, i) => (
+                <div key={i} className="border border-white rounded-sm"></div>
+              ))}
+            </div>
+          </div>
+          
+          {/* Floating Elements */}
+          <div className="absolute top-20 left-20 w-3 h-3 bg-white opacity-40 rounded-full animate-bounce" style={{animationDelay: '0s'}}></div>
+          <div className="absolute top-40 right-32 w-2 h-2 bg-brand-teal opacity-60 rounded-full animate-bounce" style={{animationDelay: '1s'}}></div>
+          <div className="absolute bottom-32 left-40 w-4 h-4 bg-white opacity-30 rounded-full animate-bounce" style={{animationDelay: '2s'}}></div>
+          <div className="absolute bottom-20 right-20 w-2.5 h-2.5 bg-brand-teal opacity-50 rounded-full animate-bounce" style={{animationDelay: '1.5s'}}></div>
+        </div>
+
+        <div className="max-w-md w-full space-y-8 relative z-10 px-4 sm:px-6 lg:px-8">
           {/* Header */}
           <div className="text-center">
-            <h2 className="mt-6 text-3xl font-bold text-brand-gray-900">
+            <h2 className="text-4xl font-bold text-white mb-2">
               Welcome Back
             </h2>
-            <p className="mt-2 text-sm text-brand-gray-600">
+            <p className="text-xl text-white/90">
               Sign in to your Career Portfolio Central account
             </p>
           </div>
 
           {/* Login Form */}
-          <div className="bg-white py-8 px-6 shadow-xl rounded-xl border border-brand-gray-200">
-            <form className="space-y-6" onSubmit={handleSubmit(onSubmit)}>
+          <div className="bg-white/95 backdrop-blur-xl py-10 px-8 shadow-2xl rounded-2xl border border-white/20 relative">
+            {/* Decorative Elements */}
+            <div className="absolute top-0 right-0 w-20 h-20 bg-gradient-to-br from-brand-navy/10 to-transparent rounded-full transform translate-x-8 -translate-y-8"></div>
+            <div className="absolute bottom-0 left-0 w-16 h-16 bg-gradient-to-tr from-brand-teal/10 to-transparent rounded-full transform -translate-x-6 translate-y-6"></div>
+            
+            <form className="space-y-6 relative z-10" onSubmit={handleSubmit(onSubmit)}>
               {/* Email Field */}
               <Input
                 {...register('email')}
@@ -136,7 +161,7 @@ const LoginPage: React.FC = () => {
             </form>
 
             {/* Signup Link */}
-            <div className="mt-6 text-center">
+            <div className="mt-8 text-center">
               <p className="text-sm text-brand-gray-600">
                 Don&apos;t have an account?{' '}
                 <Link
@@ -151,13 +176,13 @@ const LoginPage: React.FC = () => {
 
           {/* Footer Text */}
           <div className="text-center">
-            <p className="text-xs text-brand-gray-500">
+            <p className="text-sm text-white/80">
               By signing in, you agree to our{' '}
-              <Link href="/terms" className="text-brand-navy hover:underline">
+              <Link href="/terms" className="text-white hover:text-white/90 underline">
                 Terms of Service
               </Link>{' '}
               and{' '}
-              <Link href="/privacy" className="text-brand-navy hover:underline">
+              <Link href="/privacy" className="text-white hover:text-white/90 underline">
                 Privacy Policy
               </Link>
             </p>

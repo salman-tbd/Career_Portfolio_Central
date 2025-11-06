@@ -94,12 +94,6 @@ export default function AboutPage() {
     },
   ];
 
-  const stats = [
-    { number: '100K+', label: 'Professionals Helped' },
-    { number: '85%', label: 'Success Rate' },
-    { number: '500+', label: 'Expert Counselors' },
-    { number: '50+', label: 'Countries Served' },
-  ];
 
   return (
     <div className="min-h-screen bg-white">
@@ -142,23 +136,24 @@ export default function AboutPage() {
               Empowering professionals worldwide to build exceptional careers through innovative tools, expert guidance, and comprehensive resources.
             </p>
 
-            {/* Stats Preview */}
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-8 max-w-3xl mx-auto">
-              {[
-                { number: '100K+', label: 'Professionals' },
-                { number: '85%', label: 'Success Rate' },
-                { number: '500+', label: 'Counselors' },
-                { number: '50+', label: 'Countries' }
-              ].map((stat, index) => (
-                <div key={index} className="text-center">
-                  <div className="text-2xl md:text-3xl font-bold text-white mb-1">
-                    {stat.number}
-                  </div>
-                  <div className="text-sm text-white/80">
-                    {stat.label}
-                  </div>
-                </div>
-              ))}
+            {/* Simple Stats Cards */}
+            <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 max-w-4xl mx-auto">
+              <div className="bg-white/10 rounded-xl p-6 text-center border border-white/20">
+                <div className="text-2xl font-bold text-yellow-400 mb-1">10K+</div>
+                <div className="text-sm text-white/90">Success Stories</div>
+              </div>
+              <div className="bg-white/10 rounded-xl p-6 text-center border border-white/20">
+                <div className="text-2xl font-bold text-yellow-400 mb-1">95%</div>
+                <div className="text-sm text-white/90">Satisfaction Rate</div>
+              </div>
+              <div className="bg-white/10 rounded-xl p-6 text-center border border-white/20">
+                <div className="text-2xl font-bold text-yellow-400 mb-1">50+</div>
+                <div className="text-sm text-white/90">Expert Coaches</div>
+              </div>
+              <div className="bg-white/10 rounded-xl p-6 text-center border border-white/20">
+                <div className="text-2xl font-bold text-yellow-400 mb-1">4.9/5</div>
+                <div className="text-sm text-white/90">Average Rating</div>
+              </div>
             </div>
           </div>
         </div>
@@ -190,11 +185,11 @@ export default function AboutPage() {
               
               <div className="space-y-6 mb-10">
                 <p className="text-lg text-brand-gray-700 leading-relaxed">
-                  Career Portfolio Central was founded with a simple yet powerful mission: to democratize access to professional career development tools and expert guidance. We believe that everyone, regardless of their background or current position, deserves the opportunity to build a compelling career portfolio and achieve their professional goals.
-                </p>
+                Career Portfolio Central was founded with a simple yet powerful mission: to democratize access to professional career development tools and expert guidance. We believe that everyone, regardless of their background or current position, deserves the opportunity to build a compelling career portfolio and achieve their professional goals.
+              </p>
                 <p className="text-lg text-brand-gray-700 leading-relaxed">
-                  Since our founding in 2010, we&apos;ve helped over 100,000 professionals across 50+ countries create standout resumes, build impressive portfolios, find meaningful employment, and advance their careers through our comprehensive platform and expert counseling services.
-                </p>
+                Since our founding in 2010, we&apos;ve helped over 100,000 professionals across 50+ countries create standout resumes, build impressive portfolios, find meaningful employment, and advance their careers through our comprehensive platform and expert counseling services.
+              </p>
               </div>
 
               {/* Key Features */}
@@ -228,7 +223,7 @@ export default function AboutPage() {
                 </Link>
                 <Link href="/career-counselling" className="inline-flex items-center px-8 py-4 border-2 border-brand-gray-300 text-brand-gray-700 font-semibold rounded-xl hover:bg-brand-gray-50 hover:border-brand-gray-400 focus:outline-none focus:ring-4 focus:ring-brand-gray-300/30 transition-all duration-300">
                   Learn More
-                </Link>
+              </Link>
               </div>
             </div>
             
@@ -276,7 +271,7 @@ export default function AboutPage() {
         <div className="container relative">
           <div className="text-center mb-20">
             <div className="inline-flex items-center px-4 py-2 bg-purple-100 text-purple-800 rounded-full text-sm font-medium mb-6">
-              💎 Our Core Values
+               Our Core Values
             </div>
             <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 text-brand-gray-900">
               The Principles That
@@ -292,7 +287,7 @@ export default function AboutPage() {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {values.map((value, index) => (
               <div key={index} className="group">
-                <div className="relative p-8 bg-white rounded-2xl border border-gray-200 shadow-sm hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 group-hover:border-transparent overflow-hidden h-full">
+                <div className="relative p-8 bg-white rounded-2xl border-2 border-brand-gray-300 shadow-sm hover:shadow-xl hover:border-brand-navy transition-all duration-300 transform hover:-translate-y-2 overflow-hidden h-full">
                   {/* Background Gradient on Hover */}
                   <div className={`absolute inset-0 bg-gradient-to-br ${value.bgGradient} opacity-0 group-hover:opacity-100 transition-opacity duration-300`}></div>
                   
@@ -408,7 +403,7 @@ export default function AboutPage() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {expertise.map((area, index) => (
               <div key={index} className="group">
-                <div className="relative p-8 bg-white rounded-2xl border border-gray-200 shadow-sm hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 overflow-hidden">
+                <div className="relative p-8 bg-white rounded-2xl border-2 border-brand-gray-300 shadow-sm hover:shadow-xl hover:border-brand-teal transition-all duration-300 transform hover:-translate-y-2 overflow-hidden">
                   {/* Icon */}
                   <div className={`inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br ${area.gradient} text-white rounded-2xl mb-6 transform group-hover:scale-110 transition-transform duration-300 shadow-lg`}>
                     {area.icon}
@@ -565,27 +560,77 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* Stats Section */}
+      {/* Our Commitment Section */}
       <section className="py-20 bg-brand-navy text-white">
         <div className="container">
           <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">Our Impact</h2>
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">Our Commitment to Your Success</h2>
             <p className="text-xl opacity-90 max-w-2xl mx-auto">
-              Numbers that reflect our commitment to helping professionals succeed
+              We&apos;re dedicated to providing the tools, guidance, and support you need to achieve your career goals
             </p>
           </div>
 
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
-            {stats.map((stat, index) => (
-              <div key={index}>
-                <div className="text-3xl md:text-4xl font-bold mb-2">
-                  {stat.number}
-                </div>
-                <div className="opacity-90">
-                  {stat.label}
-                </div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
+            {/* Quality Assurance */}
+            <div className="text-center p-6">
+              <div className="w-16 h-16 bg-brand-teal rounded-full flex items-center justify-center mx-auto mb-6">
+                <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
               </div>
-            ))}
+              <h3 className="text-xl font-semibold mb-4">Quality Guaranteed</h3>
+              <p className="opacity-90 leading-relaxed">
+                Every resume template, portfolio design, and career resource is crafted by industry experts to meet professional standards.
+              </p>
+            </div>
+
+            {/* Expert Support */}
+            <div className="text-center p-6">
+              <div className="w-16 h-16 bg-brand-teal rounded-full flex items-center justify-center mx-auto mb-6">
+                <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+                </svg>
+              </div>
+              <h3 className="text-xl font-semibold mb-4">Expert Guidance</h3>
+              <p className="opacity-90 leading-relaxed">
+                Our certified career counselors provide personalized advice and strategic guidance to help you navigate your career path.
+              </p>
+            </div>
+
+            {/* Continuous Innovation */}
+            <div className="text-center p-6">
+              <div className="w-16 h-16 bg-brand-teal rounded-full flex items-center justify-center mx-auto mb-6">
+                <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+                </svg>
+              </div>
+              <h3 className="text-xl font-semibold mb-4">Always Evolving</h3>
+              <p className="opacity-90 leading-relaxed">
+                We continuously update our platform with new features, templates, and tools based on industry trends and user feedback.
+              </p>
+                </div>
+                </div>
+
+          {/* Success Promise */}
+          <div className="text-center max-w-3xl mx-auto">
+            <div className="bg-white bg-opacity-10 rounded-lg p-8 border border-white border-opacity-20">
+              <h3 className="text-2xl font-bold mb-4">Our Promise to You</h3>
+              <p className="text-lg opacity-95 leading-relaxed mb-6">
+                &ldquo;When you choose Career Portfolio Central, you&apos;re not just getting a platform &ndash; you&apos;re gaining a partner committed to your professional growth and career success.&rdquo;
+              </p>
+              <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                <Link href="/signup">
+                  <button className="px-8 py-3 bg-white text-brand-navy font-semibold rounded-lg hover:bg-gray-100 transition-colors duration-200">
+                    Start Your Journey
+                  </button>
+                </Link>
+                <Link href="/contact">
+                  <button className="px-8 py-3 border-2 border-white text-white font-semibold rounded-lg hover:bg-white hover:text-brand-navy transition-colors duration-200">
+                    Contact Us
+                  </button>
+                </Link>
+              </div>
+            </div>
           </div>
         </div>
       </section>
